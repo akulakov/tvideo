@@ -1,0 +1,262 @@
+#:h1 Computer Programming for... Everyone!
+#:h3 Introduction to Python
+#This tutorial will use Python version 3.3, but most examples will work in 2.x as well.
+
+:note  Images are inserted in this tutorial for visual illustration only, actual python interpreter does not display images.
+
+:3
+:h3 Dealing With Data in Python
+
+:2
+Programs deal with information and information needs to be stored somewhere.
+
+:p4
+In Python, data is usually stored in four main types of data structures: numbers, text, lists
+and dictionaries.
+
+
+
+:p5
+The first two -- numbers and text -- are simple data types I'll cover in detail in one of the next
+chapters.
+
+Lists and dictionaries are container structures that can consist of numbers and text, as well as
+other lists and dictionaries or custom objects.
+
+
+
+:p7
+:h3 Lists
+
+:p6
+The easiest way to store a bunch of items in Python is to use a list.
+
+
+:p5
+I'll start by making a new list with two items:
+
+    >>> mylist = [shieldpng, swordpng]
+    >>> mylist
+    [shield.png, sword.png]
+
+:p8
+Good! I'll go ahead and add the plant to the list:
+
+    >>> mylist.append(plantpng)
+
+    >>> mylist
+    [shield.png, sword.png, plant.png]
+
+:p7
+One of the typical uses of a list is to go over it, performing some action on each item:
+
+    >>> for item in mylist:
+            print("item:")
+            print(item)
+    item:
+    shield.png
+    item:
+    sword.png
+    item:
+    plant.png
+
+:p9
+In this case I've used the print() function which displays the object(s) passed to it. The first
+print statement displays text (enclosed in quotes).
+
+:6
+You can combine two lines of code together by using a semicolon (note that a list may contain
+duplicate items):
+
+    >>> mylist.append(shieldpng) ; mylist
+    [shield.png, sword.png, plant.png, shield.png]
+
+(although in many cases it is to be avoided because it makes the line less readable -- I will only
+use it in this tutorial when suitable)
+
+:p9
+You can also access a list item by its index number, which start at 0. The second item is
+at index 1, third is at 2, and so on:
+
+    >>> mylist[1]
+    sword.png
+
+    >>> mylist[2]
+    plant.png
+
+:p7
+Similarly, you change the list item by its index:
+
+    >>> mylist[1] = plantpng ; mylist
+    [shield.png, plant.png, plant.png, shield.png]
+
+:p7
+An item can also be deleted with the 'del' statement:
+
+    >>> del mylist[0] ; mylist
+    [plant.png, plant.png, shield.png]
+
+
+:p6
+To sum up -- you can use lists to store things like:
+
+    * shopping lists
+    * lists of lines in a file
+    * words in a sentence
+    * characters in a word
+    * list of files in a directory
+
+
+
+:p9
+:h3 Dictionaries
+
+:p4
+Let's have a quick look at the dictionaries.
+
+A dictionary lets you store a number of different items, just like a list, except that the items
+are not stored in a particular order.
+
+:p7
+The key difference is that in a dictionary, each item is associated with a name, which is
+typically a string of text (but can also be a number or some other object).
+
+:3
+    >>> mydict = {"barrel": barrelpng} ; mydict
+    {"barrel": barrel.png}
+
+:p7
+I'll add one more item:
+
+    >>> mydict["rock"] = rockpng
+
+    >>> mydict
+    {"barrel": barrel.png, "rock": rock.png}
+
+:p8
+You can access an item and delete an item by its name ('key' in python-speak), similarly to a list:
+
+    >>> mydict["rock"]
+    rock.png
+
+    >>> del mydict["rock"] ; mydict
+    {"barrel": barrel.png}
+
+
+
+:p10
+:h3 Lists and Dictionaries
+
+:p3
+So different and yet, in some ways, quite similar!
+
+:p5
+Both lists and dicts can add, change and access items individually.
+
+Items can be any kinds of Python objects: numbers, strings, other lists and dicts as well as other
+types of custom objects we'll learn about later.
+
+:p7
+The two essential differences between the two are:
+
+    * items are in a specific order in a list but not in a dict
+    * dict items are accessed by names; list items -- by index
+
+:p8
+Although it's possible to loop over dict items, commonly that's something you will only do with
+a list.
+
+:4
+A rule of thumb is: if you think, "I will need to loop over items" - use a list.
+
+:4
+If, on the other hand, you think, "I need to access items by name" - that would be a dict.
+
+
+
+:p6
+:h3 Other List-like Data Structures: text and tuples
+
+:p4
+Tuples are almost exactly the same as lists except that they cannot be changed:
+
+    >>> mytuple = (swordpng, shieldpng)
+
+    >>> del mytuple[0]
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    TypeError: 'tuple' object doesn't support item deletion
+
+    >>> mytuple[0] = flowerpng
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    TypeError: 'tuple' object does not support item assignment
+
+:p6
+Other than that, tuples can be looped over and items can be accessed by index -- just like a list.
+Tuples may also contain all types of Python objects, again just as lists do.
+
+:p6
+Text strings are in some ways very similar to tuples: items can be accessed by index and looped
+over, but not changed or deleted.
+
+The main difference is that items are always single characters and printing them shows a string of
+text:
+
+:p7
+    >>> text = "Welcome to the world of coding"
+    >>> text[0]
+    'W'
+
+    >>> for char in text:
+            print(char, end=' ')
+    W e l c o m e   t o   t h e   w o r l d   o f   c o d i n g
+
+:p8
+The end argument (in this case, a single space character), specifies what to display after each character.
+:6
+
+
+
+:h3 Conditionals
+:4
+
+    >>> season = "winter"
+    >>> if season == "spring":
+            print(flowerpng)
+
+:5
+Conditionals allow the program to adapt to circumstances. No flower blooms in wintertime!
+:4
+
+I will now turn winter into spring:
+:2
+
+    >>> season = "spring"
+    >>> if season == "spring":
+            print(flowerpng)
+    flower.png
+
+:6
+Note that the double equal sign is used for comparisons because the single equals is already
+taken: it's used for assignments.
+:5
+
+    >>> season = "winter"
+    >>> if season == "spring" or season == "summer":
+            print(flowerpng)
+        else:
+            print(plantpng)
+    plant.png
+
+:7
+Using if and else conditionals along with 'or' operator, we can make flowers bloom during spring
+and summer; in wintertime it's far too cold for flowers!
+:4
+
+#:p3
+#Since you won't have these images in your interpreter, you can create simple text strings to
+#follow along, e.g.:
+
+#    >>> shieldpng = "shieldpng"
+
