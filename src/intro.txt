@@ -64,11 +64,8 @@ One of the typical uses of a list is to go over it, performing some action on ea
 In this case I've used the print() function which displays the object(s) passed to it. The first
 print statement displays text (enclosed in quotes).
 
-:6
-You can combine two lines of code together by using a semicolon (note that a list may contain
-duplicate items):
-
-    >>> mylist.append(shieldpng) ; mylist
+    >>> mylist.append(shieldpng)
+    >>> mylist
     [shield.png, sword.png, plant.png, shield.png]
 
 (although in many cases it is to be avoided because it makes the line less readable -- I will only
@@ -87,13 +84,15 @@ at index 1, third is at 2, and so on:
 :p7
 Similarly, you change the list item by its index:
 
-    >>> mylist[1] = plantpng ; mylist
+    >>> mylist[1] = plantpng
+    >>> mylist
     [shield.png, plant.png, plant.png, shield.png]
 
 :p7
 An item can also be deleted with the 'del' statement:
 
-    >>> del mylist[0] ; mylist
+    >>> del mylist[0]
+    >>> mylist
     [plant.png, plant.png, shield.png]
 
 
@@ -122,7 +121,8 @@ The key difference is that in a dictionary, each item is associated with a name,
 typically a string of text (but can also be a number or some other object).
 
 :3
-    >>> mydict = {"barrel": barrelpng} ; mydict
+    >>> mydict = {"barrel": barrelpng}
+    >>> mydict
     {"barrel": barrel.png}
 
 :p7
@@ -139,7 +139,8 @@ You can access an item and delete an item by its name ('key' in python-speak), s
     >>> mydict["rock"]
     rock.png
 
-    >>> del mydict["rock"] ; mydict
+    >>> del mydict["rock"]
+    >>> mydict
     {"barrel": barrel.png}
 
 
