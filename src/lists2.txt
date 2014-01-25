@@ -1,0 +1,236 @@
+#:h1 Computer Programming for... Everyone!
+#:h3 Introduction to Python
+#This tutorial will use Python version 3.3, but most examples will work in 2.x as well.
+
+:note  Images are inserted in this tutorial for visual illustration only, actual python interpreter does not display images.
+
+:3
+:h3 Python Lists
+
+Lists in Python may be used to store things like:
+
+    *
+    * shopping lists
+    * lists of lines in a file
+    * words in a sentence
+    * characters in a word
+    * list of files in a directory
+
+:p5
+I'll start by making a new list with two items:
+
+    >>> mylist = [shieldpng, swordpng]
+    >>> mylist
+    [shield.png, sword.png]
+
+:p8
+.. and add the plant to the list:
+
+    >>> mylist.append(plantpng)
+
+    >>> mylist
+    [shield.png, sword.png, plant.png]
+
+:p7
+One of the typical uses of a list is to go over it, performing some action on each item:
+
+    >>> for item in mylist:
+            print("item:")
+            print(item)
+    item:
+    shield.png
+    item:
+    sword.png
+    item:
+    plant.png
+
+:p9
+In this case I've used the print() function which displays the object(s) passed to it. The first
+print statement displays text (enclosed in quotes).
+
+:p9
+You can also access a list item by its index number, which start at 0. The second item is
+at index 1, third is at 2, and so on:
+
+    >>> mylist[1]
+    sword.png
+
+    >>> mylist[2]
+    plant.png
+
+    >>> mylist[-1]
+    plant.png
+
+(negative index counts from the end)
+
+:p7
+Similarly, you change the list item by its index:
+
+    >>> mylist[1] = plantpng
+    >>> mylist
+    [shield.png, plant.png, plant.png, shield.png]
+
+:7
+Use the 'count' method to get the number of items:
+
+    >>> mylist.count( shieldpng )
+    2
+
+:p7
+An item can also be deleted with the 'del' statement:
+
+    >>> del mylist[0]
+    >>> mylist
+    [plant.png, plant.png, shield.png]
+
+:7
+There is another way to delete an item: you can use the 'remove' method and specify the item to be
+removed:
+
+    >>> mylist.remove(plantpng)
+    >>> mylist
+    [plant.png, shield.png]
+
+:2
+('remove' looks for the first matching item from left and deletes just one)
+
+:7
+If you already have a list you want added at the end of another list, you can either use the '+'
+operator to create a new list or the 'extend' method, which modifies list in-place:
+
+    >>> mylist = mylist + [swordpng, plantpng]
+    [plant.png, plant.png, shield.png, sword.png, plant.png]
+
+    >>> list2 = [shieldpng, swordpng]
+    >>> mylist.extend(list2)
+    >>> mylist
+    [plant.png, plant.png, shield.png, sword.png, plant.png, shieldpng, swordpng]
+
+:7
+To find out the # of an item, use 'index' method:
+
+    >>> mylist.index(shieldpng)
+    2
+
+:2
+(index of the first item from left side is returned)
+
+:7
+It's often useful to get and remove an item. Python provides a single method 'pop' to do just
+that:
+
+    >>> item = mylist.pop()
+    >>> item
+    swordpng
+
+    >>> item = mylist.pop(0)
+    >>> item
+    plantpng
+
+    >>> mylist
+    [plant.png, shield.png, sword.png, plant.png, shieldpng]
+
+:2
+As you can see, 'pop' gets the last item by default, but you can give it a specific index.
+
+:7
+To reverse a list:
+
+    >>> mylist.reverse()
+    >>> mylist
+    [shield.png, plant.png, sword.png, shield.png, plantpng]
+
+:7
+You can turn many types of objects into a list by calling the 'list' object:
+
+    >>> list("abc")
+    ['a', 'b', 'c']
+
+    >>> t = 1, 2, 3
+    >>> list(t)
+    [1, 2, 3]
+
+    >>> r = range(10)
+    >>> r
+    range(0, 10)
+    >>> list(r)
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    >>> d = {1: plantpng, 2: swordpng}
+    >>> list(d)
+    [(1, plantpng), (2, swordpng)]
+
+:13
+The reverse operation is also possible - turning a list of tuples into a dictionary:
+
+    >>> mylist = [(1, plantpng), (2, swordpng)]
+    >>> dict(mylist)
+    {1: plantpng, 2: swordpng}
+
+:7
+Slicing lets you .. slice lists into chunks:
+
+    >>> mylist = [shieldpng, plantpng, swordpng, shieldpng, plantpng]
+    >>> mylist[1:]
+    [plantpng, swordpng, shieldpng, plantpng]
+
+    >>> mylist[2:]
+    [swordpng, shieldpng, plantpng]
+
+    >>> mylist[:2]
+    [shieldpng, plantpng]
+
+:9
+Note that slicing to and from the same index gives you the copy of the original list:
+
+    >>> mylist[:2] + mylist[2:]
+    [shieldpng, plantpng, swordpng, shieldpng, plantpng]
+
+:7
+Negative indexes can be used just as when you access items one-by-one:
+
+    >>> mylist[-2:]
+    [shieldpng, plantpng]
+
+:7
+Stepping through is done with the third argument:
+
+    >>> mylist[0:5:2]
+    [shieldpng, swordpng, plantpng]
+
+:7
+Perhaps it's clearer with numbers!
+
+    >>> list2 = [1, 2, 3, 4, 5]
+    >>> list2[0:5:2]
+    [1, 3, 5]
+
+:7
+Sorting is a big and important topic that deserves its own chapter, but here is some basic
+sorting:
+
+    >>> mylist = [3, 8, 12, 6]
+    >>> mylist.sort()
+    >>> mylist
+    [3, 6, 8, 12]
+
+    >>> mylist.sort(reverse=True)
+    >>> mylist
+    [12, 8, 6, 3]
+
+    >>> list2 = ["rabbit", "wobbit", "alligator", "nightingale"]
+    >>> list2.sort()
+    >>> list2
+    ["alligator", "nightingale", "rabbit", "wobbit"]
+
+:15
+You can have a fancier sorting, for example sorting by the last letter instead of first:
+
+    >>> def key(value):
+            return value[-1]
+    >>> list2.sort(key=key)
+    ['nightingale', 'alligator', 'rabbit', 'wobbit']
+
+:5
+(defining functions will be explained later in a separate chapter)
+:8

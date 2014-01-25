@@ -64,12 +64,12 @@ One of the typical uses of a list is to go over it, performing some action on ea
 In this case I've used the print() function which displays the object(s) passed to it. The first
 print statement displays text (enclosed in quotes).
 
+:p7
+Lists may have duplicate items:
+
     >>> mylist.append(shieldpng)
     >>> mylist
     [shield.png, sword.png, plant.png, shield.png]
-
-(although in many cases it is to be avoided because it makes the line less readable -- I will only
-use it in this tutorial when suitable)
 
 :p9
 You can also access a list item by its index number, which start at 0. The second item is
@@ -99,6 +99,7 @@ An item can also be deleted with the 'del' statement:
 :p6
 To sum up -- you can use lists to store things like:
 
+    *
     * shopping lists
     * lists of lines in a file
     * words in a sentence
@@ -160,6 +161,7 @@ types of custom objects we'll learn about later.
 :p7
 The two essential differences between the two are:
 
+    *
     * items are in a specific order in a list but not in a dict
     * dict items are accessed by names; list items -- by index
 

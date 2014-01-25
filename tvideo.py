@@ -124,15 +124,27 @@ class Tutorial(object):
         prefix        = ''
         is_code       = False
         is_output     = False
-        code_indent   = 0
         interp_line   = False
         after_blank   = False     # state 'after blank line'
         blank         = False
+        bullets       = 0
+        code_indent   = 0
         output_indent = 0
 
         for line in text.split(nl):
-            if line.strip().startswith('#'):
+            sline = line.strip()
+            if sline.startswith('#'):
                 continue
+
+            # handle <ul> <li> ...
+            if sline == '*':
+                bullets = 1
+            elif bullets == 1 and sline.startswith('*'):
+                bullets = 2
+            elif bullets == 2 and not sline.startswith('*'):
+                bullets = 0
+                self.commands.append( dict(cmd="text", arg="</ul>", indent=indent, cls=cls, prefix=prefix) )
+
             line   = line.rstrip()
             blank  = bool(not line)
             indent = len(line) - len(line.lstrip()) + 1
@@ -174,7 +186,15 @@ class Tutorial(object):
                 for name, fn, tag in images:
                     arg = arg.replace(name+"png", fn)
                     arg = arg.replace(fn, tag)
-            self.commands.append( dict(cmd="text", arg=arg, indent=indent, cls=cls, prefix=prefix) )
+
+            if bullets == 1:
+                self.commands.append( dict(cmd="text", arg="<ul>", indent=indent, cls=cls, prefix=prefix) )
+            elif bullets == 2:
+                arg = "<li>%s</li>" % arg.lstrip('*')
+                self.commands.append( dict(cmd="text", arg=arg, indent=indent, cls=cls, prefix=prefix) )
+            else:
+                self.commands.append( dict(cmd="text", arg=arg, indent=indent, cls=cls, prefix=prefix) )
+
             prefix      = ''
             interp_line = False
             after_blank = bool(not line.strip())
